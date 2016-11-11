@@ -39,3 +39,36 @@ ul {
   list-style: none; }
 
 /*# sourceMappingURL=style.css.map */
+
+/*-----------------------------------------------------myClassRoom.html-----------------------------------------------*/
+
+/*info*/
+.info-table{
+	height: auto;
+}
+.info-border{
+	border-top: 1px solid #adb5bd;
+	border-left: 1px solid #adb5bd;
+	border-right: 1px solid #adb5bd;
+}
+.info-border-2nd{
+	border-top: 1px solid #adb5bd;
+	border-right: 1px solid #adb5bd;
+}
+.info-border p , .info-border-2nd p{
+	margin-left: 20px;
+}
+#info-border-last, #info-border-2nd-last{
+	border-bottom: 1px solid #adb5bd;
+}
+
+
+/*other professors*/
+.other-profesors-info{
+	line-height: 35px;
+}
+.other-profesors-info img {
+	width: 100%;
+	border-radius: 50%;
+}
+
