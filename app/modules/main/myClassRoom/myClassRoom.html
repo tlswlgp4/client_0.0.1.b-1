@@ -41,102 +41,105 @@
 	<md-divider></md-divider>
 </div>
 <!----------info------------>
-<br><br>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>모집기간</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>2016-01-01 ~ 2016-01-04</p>
-	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>수강기간</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>2016-03-01 ~ 2016-05-07</p>
-	</div>
-</div>
 
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>강사</b></p>
+<br><br>
+<div ng-repeat="item in vm.courseInfo">
+	<div layout="row" layout-wrap layout-sm="column" class="info-table"  >
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>모집기간</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd" >
+				<p> {{item.recruitmentPeriod }}</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>문성훈</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>수강기간</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{item.durationOfTheCourse}}</p>
+		</div>
 	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>강의시간</b></p>
+
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>강사</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{vm.professorName}}</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>100시간</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>강의시간</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{item.lectureTime}}</p>
+		</div>
 	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>고용보험</b></p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>고용보험</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.unemploymentInsurance}}</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>적용(환급)</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25"class="info-border">
+			<p><b>지원형태</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.formOfSupport}}</p>
+		</div>
 	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25"class="info-border">
-		<p><b>지원형태</b></p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25"class="info-border">
+			<p><b>환급금</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.refund}}</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>C++ 위탁교육</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>위탁교육서 제출기한</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.deadlineForConsignmentEducationDoc}}</p>
+		</div>
 	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25"class="info-border">
-		<p><b>환급금</b></p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>학습정원</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.numberOfStudent}}명</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>34900원(위탁교육)</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>전체 학습 유닛수</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.numberOfUnit}}개</p>
+		</div>
 	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>위탁교육서 제출기한</b></p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border">
+			<p><b>교재명</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd">
+			<p>{{ item.bookName}}</p>
+		</div>
 	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>2016-03-04</p>
-	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>학습정원</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>500명</p>
-	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>전체 학습 유닛수</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>2개</p>
-	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border">
-		<p><b>교재명</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd">
-		<p>미정</p>
-	</div>
-</div>
-<div layout="row" layout-wrap layout-sm="column" class="info-table">
-	<div flex-offset="20" flex="25" class="info-border" id="info-border-last">
-		<p><i class="fa fa-usd" aria-hidden="true"></i><b>수강신청 금액</b></p>
-	</div>
-	<div flex="30" class="info-border-2nd" id="info-border-2nd-last">
-		<p>미정</p>
+	<div layout="row" layout-wrap layout-sm="column" class="info-table">
+		<div flex-offset="20" flex="25" class="info-border" id="info-border-last">
+			<p><i class="fa fa-usd" aria-hidden="true"></i><b>수강신청 금액</b></p>
+		</div>
+		<div flex="30" class="info-border-2nd" id="info-border-2nd-last">
+			<p>{{ item.price}}</p>
+		</div>
 	</div>
 </div>
 <br><br>
