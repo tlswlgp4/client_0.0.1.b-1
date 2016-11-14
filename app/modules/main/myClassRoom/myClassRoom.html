@@ -47,13 +47,96 @@
 		</div>
 
 <!--datail-->
-<div layout="row" flex-offset="10" flex="80" class="inset">
-		<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">
-			과정소개 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">
-		</md-button>
-
-
+<br><br>
+<div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="data in vm.accordianData">
+	<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+		<div class="md-toolbar-tools">
+			<h2>
+				<span>{{data.heading}}</span>
+			</h2>
+			<span flex=""></span>
+			<span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+		</div>
+	</md-toolbar>
+	<div ng-class="{dataContent:true, activeContent:data.expanded}" style="padding: 20px">{{data.content}}
+	</div>
 </div>
+
+		<!---->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+		<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;" aria-controls="childListId" aria-expanded="true">-->
+			<!--과정소개 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+		<!--</md-button>-->
+	<!--</div>-->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
+		<!--학습목표 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+	<!--</md-button>-->
+	<!--</div>-->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
+		<!--학습내용 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+	<!--</md-button>-->
+	<!--</div>-->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
+		<!--학습대상 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+	<!--</md-button>-->
+	<!--</div>-->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
+		<!--학습방법 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+	<!--</md-button>-->
+	<!--</div>-->
+<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
+	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
+		<!--평가방법 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
+	<!--</md-button>-->
+
+<!--</div>-->
+
+
+
+<!--<md-content layout="row" flex layout-align="center" layout-fill>-->
+	<!--<div flex="70" class="content" ui-view>-->
+		<!--<md-item ng-repeat="item in vm.users" class="item"-->
+				 <!--ng-class="{ 'selected-item': $index == selectedUserIndex}">-->
+			<!--<md-item-content class="user tile md-whiteframe-z1"-->
+							 <!--ng-class="{ 'selected md-whiteframe-z2': $index == selectedUserIndex}"-->
+							 <!--layout="column">-->
+				<!--<div layout="row" layout-fill ng-click="selectUserIndex($index)" class="folded">-->
+					<!--<div class="md-tile-left">-->
+						<!--<img ng-src="{{ item.face }}" class="face">-->
+					<!--</div>-->
+					<!--<div class="md-tile-content" layout="column" layout-align="center start">-->
+						<!--<h3>{{ item.name.first + " " + item.name.last }}</h3>-->
+
+						<!--<p ng-hide="$index == selectedUserIndex">-->
+							<!--<span>Something</span>-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>-->
+				<!--<div layout="column" layout-fill class="expanded">-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+					<!--<br/>-->
+					<!--<span>some content</span>-->
+				<!--</div>-->
+			<!--</md-item-content>-->
+			<!--<md-divider class="divider-inset" ng-if="!$last"></md-divider>-->
+		<!--</md-item>-->
+	<!--</div>-->
+<!--</md-content>-->
 <!-----------------------------------------------info------------------------------------->
 
 <br><br>
