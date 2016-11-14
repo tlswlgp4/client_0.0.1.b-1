@@ -22,12 +22,13 @@
 	 * and bindable members up top.
 	 */
 
-	function myClassRoom(homeService, $location) {
+	function myClassRoom(homeService, $location, $mdToast) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.title = "Hello, codeEnjoy!";
 		vm.version = "1.0.0";
 		vm.listFeatures = homeService.getFeaturesList();
+
 
 		vm.studentInfo  ={
 			numberOfCompletedContentsInCourse: 7,
@@ -84,6 +85,7 @@
 						CourseId:"e7af7f81-9a78-11e6-b468-f31de1ad378f",
 						EndAssignmentDate:"2016-10-31",
 						EndExamDate:"2016-10-31",
+
 						NumberOfQuestionsForAssignment:2,
 						NumberOfQuestionsForExam:2,
 						RequireAssignment:true,
@@ -104,7 +106,8 @@
 		vm.professorName = "문성훈";
 		vm.professorImg ='images/professorImages/문성훈.jpg';
 		vm.subjectName = vm.courseInfo.courseName;
-		vm.recentImage = 'images/coursesImage/'+vm.subjectName+'.png'
+		vm.recentImage = 'app/assets/images/coursesImage/java.png'
+		// vm.recentImage = 'app/assets/images/coursesImage/'+vm.subjectName+'.png'
 
 		vm.otherProfessors = [
 			{
@@ -120,14 +123,7 @@
 				name:"정진용",
 				numberOfStudent:50,
 				professorId:"e82dd690-9a78-11e6-b468-f31de1ad378f"
-			},
-			{
-				courseId:"e8302082-9a78-11e6-b468-f31de1ad378f",
-				courseName:"C++",
-				name:"이정현",
-				numberOfStudent:50,
-				professorId:"e82dd690-9a78-11e6-b468-f31de1ad378f"
-			},
+			}
 		]
 
 		vm.otherProfessorInfo = function(CourseId, ProfessorId){

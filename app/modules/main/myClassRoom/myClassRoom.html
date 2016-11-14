@@ -10,43 +10,57 @@
 		<!--</md-card-content>-->
 	<!--</md-card>-->
 <!--</div>-->
-	<!--<md-card class="text-center">
-        <md-card-content>
-            <h1>{{ vm.title }}</h1>
-            <h3>{{ vm.version }}</h3>
-            <p>This is a template for a simple home screen website. Use it as a starting point to create something more unique.</p>
-            <br>
-            <md-divider class="margin-top-20"></md-divider>
-            <h1 class="margin-top-50">Features</h1>
-            <ul>
-                <li class=" text-center" ng-repeat="item in vm.listFeatures">
-                    <p><ng-md-icon icon="check"></ng-md-icon> {{item.feature}}</p>
-                </li>
-            </ul>
-        </md-card-content>
-    </md-card>-->
-<!-----other professor------>
+	<!--<md-card class="text-center">-->
+        <!--<md-card-content>-->
+            <!--<h1>{{ vm.title }}</h1>-->
+            <!--<h3>{{ vm.version }}</h3>-->
+            <!--<p>This is a template for a simple home screen website. Use it as a starting point to create something more unique.</p>-->
+            <!--<br>-->
+            <!--<md-divider class="margin-top-20"></md-divider>-->
+            <!--<h1 class="margin-top-50">Features</h1>-->
+            <!--<ul>-->
+                <!--<li class=" text-center" ng-repeat="item in vm.listFeatures">-->
+                    <!--<p><ng-md-icon icon="check"></ng-md-icon> {{item.feature}}</p>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</md-card-content>-->
+    <!--</md-card>-->
+<!-------------------------------------------수강 전 banner------------------------------------>
 <br><br>
-<div flex-offset="10" flex="70" class="other-profesors-info">
-	<h1>Other Professor</h1><br>
+		<div layout="row" layout-wrap layout-sm="column"  >
+			<div flex-offset="5" flex="15" class="top-banner">
+					<img ng-Src="{{vm.recentImage}}" width="100%" >
+			</div>
 
-	<md-divider></md-divider>
-	<div layout="row" layout-wrap layout-sm="column">
-		<div flex-offset="10" flex="15">
+			<div  flex="60" ng-repeat="item in vm.courseInfo"  class="top-banner">
+				<div id="top-banner-content">
+					<h2>{{item.courseName}}</h2>
+					<p>{{item.courseSummary}}</p>
+				</div>
+			</div>
+
+			<div  flex="10" class="top-banner" id="top-banner-button">
+				<div>
+				<md-button class="md-raised"><span>수강신청</span></md-button>
+				</div>
+			</div>
 		</div>
-		<div flex="70">
-			<p>Taught by : 최재호<br>수강인원 : 50명 <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-		</div>
-	</div>
-	<md-divider></md-divider>
+
+<!--datail-->
+<div layout="row" flex-offset="10" flex="80" class="inset">
+		<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">
+			과정소개 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">
+		</md-button>
+
+
 </div>
-<!----------info------------>
+<!-----------------------------------------------info------------------------------------->
 
 <br><br>
 <div ng-repeat="item in vm.courseInfo">
 	<div layout="row" layout-wrap layout-sm="column" class="info-table"  >
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>모집기간</b></p>
+			<p><ng-md-icon icon="info" ></ng-md-icon><b>모집기간</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd" >
 				<p> {{item.recruitmentPeriod }}</p>
@@ -54,7 +68,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>수강기간</b></p>
+			<p><ng-md-icon icon="av_timer"></ng-md-icon><b>수강기간</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{item.durationOfTheCourse}}</p>
@@ -63,7 +77,7 @@
 
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>강사</b></p>
+			<p><ng-md-icon icon="face"></ng-md-icon><b>강사</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{vm.professorName}}</p>
@@ -71,7 +85,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>강의시간</b></p>
+			<p><ng-md-icon icon="border_color"></ng-md-icon><b>강의시간</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{item.lectureTime}}</p>
@@ -79,7 +93,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>고용보험</b></p>
+			<p><ng-md-icon icon="brightness_5"></ng-md-icon><b>고용보험</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.unemploymentInsurance}}</p>
@@ -87,7 +101,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25"class="info-border">
-			<p><b>지원형태</b></p>
+			<p><ng-md-icon icon="content_paste"></ng-md-icon><b>지원형태</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.formOfSupport}}</p>
@@ -95,7 +109,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25"class="info-border">
-			<p><b>환급금</b></p>
+			<p><ng-md-icon icon="brightness_auto"></ng-md-icon><b>환급금</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.refund}}</p>
@@ -103,7 +117,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>위탁교육서 제출기한</b></p>
+			<p><ng-md-icon icon="assistant_photo"></ng-md-icon><b>위탁교육서 제출기한</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.deadlineForConsignmentEducationDoc}}</p>
@@ -111,7 +125,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>학습정원</b></p>
+			<p><ng-md-icon icon="data_usage"></ng-md-icon><b>학습정원</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.numberOfStudent}}명</p>
@@ -119,7 +133,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>전체 학습 유닛수</b></p>
+			<p><ng-md-icon icon="format_list_numbered"></ng-md-icon><b>전체 학습 유닛수</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.numberOfUnit}}개</p>
@@ -127,7 +141,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border">
-			<p><b>교재명</b></p>
+			<p><ng-md-icon icon="format_quote"></ng-md-icon><b>교재명</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd">
 			<p>{{ item.bookName}}</p>
@@ -135,7 +149,7 @@
 	</div>
 	<div layout="row" layout-wrap layout-sm="column" class="info-table">
 		<div flex-offset="20" flex="25" class="info-border" id="info-border-last">
-			<p><i class="fa fa-usd" aria-hidden="true"></i><b>수강신청 금액</b></p>
+			<p><ng-md-icon icon="receipt"></ng-md-icon><b>수강신청 금액</b></p>
 		</div>
 		<div flex="30" class="info-border-2nd" id="info-border-2nd-last">
 			<p>{{ item.price}}</p>
@@ -145,3 +159,22 @@
 <br><br>
 
 
+<!--------------------------------------------other professor----------------------------------->
+<br><br><br>
+<div flex-offset="10" flex="70" class="other-profesors-info" >
+	<h1>Other Professor</h1><br>
+	<div  ng-repeat="item in vm.otherProfessors">
+		<md-divider></md-divider>
+		<div layout="row" layout-wrap layout-sm="column">
+			<div flex-offset="10" flex="20">
+				<a href="" ng-click="otherProfessorInfo(professor.courseId, professor.professorId)">
+					<img ng-src="assets/images/professorImages/{{item.name}}.jpg">
+				</a>
+			</div>
+			<div flex="70">
+				<p>Taught by : {{item.name}}<br>수강인원 : {{item.numberOfStudent}}명 <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+			</div>
+		</div>
+		<md-divider></md-divider><br>
+	</div>
+</div>
