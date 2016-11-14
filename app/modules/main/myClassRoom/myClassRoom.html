@@ -25,28 +25,38 @@
             <!--</ul>-->
         <!--</md-card-content>-->
     <!--</md-card>-->
-<!-------------------------------------------수강 전 banner------------------------------------>
+<!----------------------------------------------------수강 전 banner-------------------------------------------------->
 <br><br>
 		<div layout="row" layout-wrap layout-sm="column"  >
 			<div flex-offset="5" flex="15" class="top-banner">
 					<img ng-Src="{{vm.recentImage}}" width="100%" >
 			</div>
 
-			<div  flex="60" ng-repeat="item in vm.courseInfo"  class="top-banner">
+			<div  flex="70" ng-repeat="item in vm.courseInfo"  class="top-banner">
 				<div id="top-banner-content">
 					<h2>{{item.courseName}}</h2>
 					<p>{{item.courseSummary}}</p>
 				</div>
-			</div>
-
-			<div  flex="10" class="top-banner" id="top-banner-button">
-				<div>
-				<md-button class="md-raised"><span>수강신청</span></md-button>
+				<div id="top-banner-button">
+					<md-button class="md-raised"><span>수강신청</span></md-button>
 				</div>
 			</div>
-		</div>
 
-<!--datail-->
+			<!--<div  flex="10" class="top-banner" id="top-banner-button">-->
+				<!--<div>-->
+				<!--<md-button class="md-raised"><span>수강신청</span></md-button>-->
+				<!--</div>-->
+			<!--</div>-->
+		</div>
+<!--진행률-->
+<br><br>
+<div  flex-offset="10" flex="70" class="progress-percentage">
+	<br><h3>나의 진행률</h3><br>{{(vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse)*100|number:1}}
+	<uib-progressbar class="progress-striped" value="studentInfo.numberOfCompletedContentsInCourse/studentInfo.numberOfTotalContentsInCourse*100">{{studentInfo.numberOfCompletedContentsInCourse/studentInfo.numberOfTotalContentsInCourse*100|number:1}}% complete
+	</uib-progressbar>
+	<br><br>
+</div>
+<!--------------------------------------------------------datail------------------------------------------------------->
 <br><br>
 <div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="data in vm.accordianData">
 	<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
@@ -58,86 +68,11 @@
 			<span ng-class="{expandCollapse:true, active:data.expanded}"></span>
 		</div>
 	</md-toolbar>
-	<div ng-class="{dataContent:true, activeContent:data.expanded}" style="padding: 20px">{{data.content}}
+	<div ng-class="{dataContent:true, activeContent:data.expanded}" style="padding-left: 30px; padding-right: 30px"><br>{{data.content}}<br><br>
 	</div>
 </div>
 
-		<!---->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-		<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;" aria-controls="childListId" aria-expanded="true">-->
-			<!--과정소개 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-		<!--</md-button>-->
-	<!--</div>-->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
-		<!--학습목표 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-	<!--</md-button>-->
-	<!--</div>-->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
-		<!--학습내용 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-	<!--</md-button>-->
-	<!--</div>-->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
-		<!--학습대상 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-	<!--</md-button>-->
-	<!--</div>-->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
-		<!--학습방법 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-	<!--</md-button>-->
-	<!--</div>-->
-<!--<div layout="row" flex-offset="10" flex="80" class="inset">-->
-	<!--<md-button ng-click="openToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">-->
-		<!--평가방법 <ng-md-icon icon="keyboard_arrow_down" style="margin-left: 900px">-->
-	<!--</md-button>-->
-
-<!--</div>-->
-
-
-
-<!--<md-content layout="row" flex layout-align="center" layout-fill>-->
-	<!--<div flex="70" class="content" ui-view>-->
-		<!--<md-item ng-repeat="item in vm.users" class="item"-->
-				 <!--ng-class="{ 'selected-item': $index == selectedUserIndex}">-->
-			<!--<md-item-content class="user tile md-whiteframe-z1"-->
-							 <!--ng-class="{ 'selected md-whiteframe-z2': $index == selectedUserIndex}"-->
-							 <!--layout="column">-->
-				<!--<div layout="row" layout-fill ng-click="selectUserIndex($index)" class="folded">-->
-					<!--<div class="md-tile-left">-->
-						<!--<img ng-src="{{ item.face }}" class="face">-->
-					<!--</div>-->
-					<!--<div class="md-tile-content" layout="column" layout-align="center start">-->
-						<!--<h3>{{ item.name.first + " " + item.name.last }}</h3>-->
-
-						<!--<p ng-hide="$index == selectedUserIndex">-->
-							<!--<span>Something</span>-->
-						<!--</p>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>-->
-				<!--<div layout="column" layout-fill class="expanded">-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-					<!--<br/>-->
-					<!--<span>some content</span>-->
-				<!--</div>-->
-			<!--</md-item-content>-->
-			<!--<md-divider class="divider-inset" ng-if="!$last"></md-divider>-->
-		<!--</md-item>-->
-	<!--</div>-->
-<!--</md-content>-->
-<!-----------------------------------------------info------------------------------------->
+<!---------------------------------------------------------info---------------------------------------------------->
 
 <br><br>
 <div ng-repeat="item in vm.courseInfo">
@@ -250,13 +185,17 @@
 		<md-divider></md-divider>
 		<div layout="row" layout-wrap layout-sm="column">
 			<div flex-offset="10" flex="20">
+				<br>
 				<a href="" ng-click="otherProfessorInfo(professor.courseId, professor.professorId)">
 					<img ng-src="assets/images/professorImages/{{item.name}}.jpg">
 				</a>
 			</div>
 			<div flex="70">
+				<br>
 				<p>Taught by : {{item.name}}<br>수강인원 : {{item.numberOfStudent}}명 <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				<br>
 			</div>
+
 		</div>
 		<md-divider></md-divider><br>
 	</div>

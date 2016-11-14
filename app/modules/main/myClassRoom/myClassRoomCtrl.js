@@ -32,11 +32,11 @@
 		vm.accordianData = [
 			{
 				"heading" : "과정소개",
-				"content" : "GM Holden Ltd, commonly known as Holden, is an Australian automaker that operates in Australasia and is headquartered in Port Melbourne, Victoria. The company was founded in 1856 as a saddlery manufacturer in South Australia."
+				"content" :"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
 			},
 			{
-				"heading" : "학습목표",
-				"content" : "The Ford Motor Company (commonly referred to as simply Ford) is an American multinational automaker headquartered in Dearborn, Michigan, a suburb of Detroit. It was founded by Henry Ford and incorporated on June 16, 1903."
+				"heading": "학습목표",
+				"content": "C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
 			},
 			{
 				"heading" : "학습내용",
@@ -55,14 +55,14 @@
 			}
 		];
 
-		vm.collapseAll = function(data) {
-			for(var i in $scope.accordianData) {
-				if($scope.accordianData[i] != data) {
-					$scope.accordianData[i].expanded = false;
-				}
-			}
-			data.expanded = !data.expanded;
-		};
+		// vm.collapseAll = function(data) {
+		// 	for(var i in $scope.accordianData) {
+		// 		if($scope.accordianData[i] != data) {
+		// 			$scope.accordianData[i].expanded = false;
+		// 		}
+		// 	}
+		// 	data.expanded = !data.expanded;
+		// };
 
 
 		vm.studentInfo  ={
