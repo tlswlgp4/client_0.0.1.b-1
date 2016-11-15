@@ -1,15 +1,4 @@
-<!--<div class="" flex-offset="20"  flex="60" layout-sm="column">-->
-	<!--<md-card class="text-start">-->
-		<!--<md-card-content>-->
-			<!--<md-list-item><p>과정소개</p></md-menu></md-list-item><md-divider></md-divider>-->
-			<!--<md-list-item><p>학습목표</p></md-list-item><md-divider></md-divider>-->
-			<!--<md-list-item><p>학습내용</p></md-list-item><md-divider></md-divider>-->
-			<!--<md-list-item><p>학습대상</p></md-list-item><md-divider></md-divider>-->
-			<!--<md-list-item><p>학습방법</p></md-list-item><md-divider></md-divider>-->
-			<!--<md-list-item><p>평가방법</p></md-list-item>-->
-		<!--</md-card-content>-->
-	<!--</md-card>-->
-<!--</div>-->
+
 	<!--<md-card class="text-center">-->
         <!--<md-card-content>-->
             <!--<h1>{{ vm.title }}</h1>-->
@@ -48,14 +37,54 @@
 				<!--</div>-->
 			<!--</div>-->
 		</div>
-<!--진행률-->
+<!------------------------------------------------------------진행률--------------------------------------------------->
 <br><br>
 <div  flex-offset="10" flex="70" class="progress-percentage">
-	<br><h3>나의 진행률</h3><br>{{(vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse)*100|number:1}}
-	<uib-progressbar class="progress-striped" value="studentInfo.numberOfCompletedContentsInCourse/studentInfo.numberOfTotalContentsInCourse*100">{{studentInfo.numberOfCompletedContentsInCourse/studentInfo.numberOfTotalContentsInCourse*100|number:1}}% complete
-	</uib-progressbar>
+	<br><h3>나의 진행률</h3><br>
+	<div layout="row">
+		<div flex-offset="20" flex="50" class="progress-percentage-liner">
+			<md-progress-linear md-mode="determinate" value="{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100}}">
+			</md-progress-linear>
+		</div>
+		<div flex="20" style="margin-left: -20px">
+			{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100|number:1}}% complete
+		</div>
+	</div>
 	<br><br>
 </div>
+<!------------------------------------------------------------unit----------------------------------------------------->
+
+<br><br>
+<div  flex-offset="10" flex="70" ng-repeat="item in vm.courseInfo">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h3>
+				<span>UNIT{{$index+1}}</span>
+			</h3>
+		</div>
+	</md-toolbar>
+
+	<md-content flex>
+
+		<md-list>
+
+			<md-list-item class="md-3-line unit-wrap">
+				<div class="md-list-item-text unit-content" >
+					<h3>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</h3>
+					<h3>{{item.myContentsInCourse.UnitName}}</h3>
+					<h4>{{item.myContentsInCourse.UnitSummary}}</h4>
+					<div class="unit-button">
+						<md-button class="md-raised"><span>참여</span></md-button>
+					</div>
+
+				</div>
+			</md-list-item>
+
+		</md-list>
+
+	</md-content>
+</div>
+<br><br>
 <!--------------------------------------------------------datail------------------------------------------------------->
 <br><br>
 <div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="data in vm.accordianData">
@@ -187,7 +216,7 @@
 			<div flex-offset="10" flex="20">
 				<br>
 				<a href="" ng-click="otherProfessorInfo(professor.courseId, professor.professorId)">
-					<img ng-src="assets/images/professorImages/{{item.name}}.jpg">
+					<img ng-src="app/assets/images/professorImages/{{item.name}}.jpg">
 				</a>
 			</div>
 			<div flex="70">

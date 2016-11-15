@@ -1,22 +1,101 @@
-<div class="" flex layout-sm="column">
-	<md-card class="text-center">
-		<md-card-content>
-			<h1>강의 목록</h1>
-		</md-card-content>
-	</md-card>
-    <!--<md-card class="text-center">
-        <md-card-content>
-            <h1>{{ vm.title }}</h1>
-            <h3>{{ vm.version }}</h3>
-            <p>This is a template for a simple home screen website. Use it as a starting point to create something more unique.</p>
-            <br>
-            <md-divider class="margin-top-20"></md-divider>
-            <h1 class="margin-top-50">Features</h1>
-            <ul>
-                <li class=" text-center" ng-repeat="item in vm.listFeatures">
-                    <p><ng-md-icon icon="check"></ng-md-icon> {{item.feature}}</p>
-                </li>
-            </ul>
-        </md-card-content>
-    </md-card>-->
+<br><br>
+<div ng-show="vm.checkRecentCourse">
+	<div layout="row" layout-wrap layout-sm="column"  >
+		<div flex-offset="5" flex="15" class="top-banner">
+			<img ng-Src="{{vm.recentImage}}" width="100%" >
+		</div>
+
+		<div  flex="70" class="top-banner">
+			<div id="top-banner-content">
+				<h2>{{vm.ResultOfCourses.courseName}}</h2>
+				<p>{{vm.ResultOfCourses.courseSummary}}</p><br>
+				<div layout="row">
+					<div flex-offset="10" flex="60" class="progress-percentage-liner">
+						<md-progress-linear md-mode="determinate" value="{{vm.ResultOfCourseOfMembers.numberOfCompletedContentsInCourse/vm.ResultOfCourseOfMembers.numberOfTotalContentsInCourse*100}}">
+						</md-progress-linear>
+					</div>
+					<div flex="20" style="padding-left: 20px">{{vm.ratioOfCourse|number:1}}%
+					</div>
+					<div flex="10" style="float: right;margin-top: -20px">
+						<md-button  class="md-raised" ng-show="!booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, ResultOfUnitInCourses.UnitId, ResultOfUnitInCourses.UnitNumber, ResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span>START</span></md-button>
+						<md-button  class="md-raised" ng-show="booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, CompletedResultOfUnitInCourses.UnitId, CompletedResultOfUnitInCourses.UnitNumber, CompletedResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span >처음부터</span>
+					</div>
+				</div> <!--row-->
+			</div> <!--top-banner-content-->
+		</div> <!-- .top-banner -->
+	</div>
+</div> <!--ng-show-->
+
+<br><br>
+<div ng-show="!vm.checkRecentCourse">
+	<div  flex-offset="5" flex="85" layout-sm="column" class="before-sign-up-courses" >
+		<div layout="row">
+			<div flex="30" id="before-banner-section-1"><h1 ><span>W</span>hat is <br>the Code<span>Enjoy</span> ? </h1></div>
+			<div flex="60" id="before-banner-section-2">
+				<p>CodeCraft is a site that helps you to make it easier to learn a programming language. <br>You can improve your programming skill.<br> Also, You can experience a variety of programming languages.
+				</p>
+			</div>
+		</div>
+	</div>
+	<br><br>
+</div> <!--ng-show-->
+
+<div flex-offset="5" flex="85" >
+	<!-- 수강가능 -->
+	<div class="col-sm-4" ng-repeat="possibleSubject in vm.possibleSubjects | orderBy:'subjectName'">
+		<div class="panel panel-default">
+			<div class="panel-body" style="overflow:hidden;height:330px">
+				<center>
+					<a href="" ng-click="goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)"><img class="img-circle" ng-src="app/assets/images/coursesImage/{{possibleSubject.subjectImg}}"alt="" width="130"/></a><br><br><br>
+				</center>
+				<p class="panel-professor-name"><b>{{possibleSubject.professorName}} 교수</b></p>
+				<p class="panel-subject-summary">{{possibleSubject.subjectSummary}}</p>
+			</div>
+			<center>
+				<div  style="overflow:hidden;height:45px;margin-bottom:20px">
+					<md-button class="md-raised" ng-click="myStyle={color:'#868e96'};goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)"><span ng-style="myStyle">START</span></md-button>
+				</div>
+			</center>
+		</div>
+	</div><!-- /.col-sm-4 -->
+
+	<!-- 수강중 -->
+	<div class="col-sm-4" ng-repeat="approveSubject in vm.approveSubjects | filter: {completed: 0} | orderBy:'subjectName' ">
+		<div class="panel panel-default">
+
+			<div class="panel-body" style="overflow:hidden;height:330px">
+				<center>
+					<a href="" ng-click="goDoingSubjectFunction(approveSubject.professorID, approveSubject.courseID)"><img ng-src="app/assets/images/coursesImage/{{approveSubject.subjectImg}}"width="130"></a><br><br><br>
+				</center>
+				<p class="panel-professor-name"><b>{{approveSubject.professorName}} 교수</b></p>
+				<p class="panel-subject-summary">{{approveSubject.subjectSummary}}</p>
+			</div>
+			<center>
+				<div class="courses-progressbar">
+					<md-progressbar-linear md-mode="determinate" value="{{approveSubject.completedContents/approveSubject.totalContents*100}}" ng-click="goDoingSubjectFunction(approveSubject.professorID, approveSubject.courseID)"></md-progressbar-linear>
+					{{approveSubject.completedContents/approveSubject.totalContents*100|number: 1}}% complete
+				</div>
+			</center>
+		</div>
+	</div><!-- /.col-sm-4 -->
+
+
+
+	<!-- 수강완료 -->
+	<div class="col-sm-4" ng-repeat="approveSubject in vm.approveSubjects | filter: {completed: 1}  | orderBy:'subjectName'">
+		<div class="panel panel-default" id="panel-completed">
+			<div class="panel-body" style="overflow:hidden;height:330px;">
+				<center>
+					<a href="" ng-click="goCompletedSubjectFunction(approveSubject.professorID, approveSubject.courseID)"><img  ng-src="app/assets/images/coursesImage/{{approveSubject.subjectImg}}"width="130"></a><br><br><br>
+				</center>
+				<p class="panel-professor-name"><b>{{approveSubject.professorName}} 교수</b></p>
+				<p class="panel-subject-summary">{{approveSubject.subjectSummary}}</p>
+			</div>
+			<center>
+				<div class="courses-progressbar">
+					<progressbar  type="grey" value="100"  ng-click="goCompletedSubjectFunction(approveSubject.professorID, approveSubject.courseID)">Completed</progressbar>
+				</div>
+			</center>
+		</div>
+	</div><!-- /.col-sm-4 -->
 </div>

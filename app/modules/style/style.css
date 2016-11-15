@@ -45,7 +45,7 @@ ul {
 /*banner*/
 .top-banner{
 	height: auto;
-	background-color: #dee2e6;
+	background-color: #f1f3f5;
 }
 #top-banner-content{
 	margin-top: 30px;
@@ -69,6 +69,19 @@ ul {
 }
 .progress-percentage {
 	text-align: center;
+}
+.progress-percentage-liner{
+	margin-top: 10px;
+}
+/*unit*/
+.unit-wrap{
+	background-color: #f1f3f5;
+}
+.unit-content{
+	padding: 20px;
+}
+.unit-button{
+	float: right;
 }
 
 /*datails*/
@@ -168,7 +181,101 @@ ul {
 	line-height: 35px;
 }
 .other-profesors-info img {
-
 	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+
 }
 
+/*-------------------------------------------------------courseMain---------------------------------------------------*/
+.before-sign-up-courses{
+	background-color: #f1f3f5;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+#before-banner-section-1{
+	padding-left:60px;
+}
+#before-banner-section-1 span{
+	color: orange;
+}
+#before-banner-section-2{
+	padding-left:100px;
+	padding-top:15px;
+	line-height: 25px;
+	font-size: 16px;
+}
+.panel{
+	box-shadow: 0 1px 2px #eeeeee;
+}
+.col-sm-4 .panel:hover{
+	background-color: #ced4da;
+}
+.panel-professor-name{
+	margin-right: 5px;
+	margin-bottom: 10px;
+	text-align: right;
+	font-size: 13px;
+	color: #495057;
+	font-family: 'Armata', sans-serif;
+
+}
+.panel-subject-summary{
+	margin-left: 15px;
+	margin-right: 10px;
+	text-align: left;
+	font-family: 'Armata', sans-serif;
+	color: #495057;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	height: 76px;
+	white-space: normal;
+
+	/*word-wrap: break-word;*/
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+
+.panel-body img{
+	margin-top: 30px;
+	border-radius: 50%;
+}
+.panel-start-button {
+	font-family: 'Armata', sans-serif;
+	width: 80px;
+	height: 35px;
+	border: 2px solid #868e96;
+	background-color: white;
+	color:#868e96;
+	margin-top: 10px;
+}
+.panel-start-button:hover{
+	font-size: 15px;
+	color: #868e96; !important;
+}
+.progress-bar-grey {
+	background-color: #ced4da;
+	background-image: none;
+}
+.courses-progressbar{
+	overflow:hidden;
+	margin-top:20px;
+	height:30px;
+	width:80%;
+	margin-bottom:20px;
+}
+.courses-progressbar:hover{
+	width:85%;
+}
+/*.progressbar-grey{*/
+/*background-color: grey;*/
+/*}*/
+#panel-completed{
+	background-color: #e9ecef;
+}
+#panel-completed img{
+	opacity: 0.7;
+}
