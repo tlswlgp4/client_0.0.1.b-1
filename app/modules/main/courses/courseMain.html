@@ -2,7 +2,7 @@
 <div ng-show="vm.checkRecentCourse">
 	<div layout="row" layout-wrap layout-sm="column"  >
 		<div flex-offset="5" flex="15" class="top-banner">
-			<img ng-Src="{{vm.recentImage}}" width="100%" >
+			<img ng-Src="{{vm.recentImage}}" width="100%" />
 		</div>
 
 		<div  flex="70" class="top-banner">
@@ -53,7 +53,7 @@
 			</div>
 			<center>
 				<div  style="overflow:hidden;height:45px;margin-bottom:20px">
-					<md-button class="md-raised" ng-click="myStyle={color:'#868e96'};goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)"><span ng-style="myStyle">START</span></md-button>
+					<md-button class="md-raised" ng-click="goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)">START</md-button>
 				</div>
 			</center>
 		</div>
@@ -70,12 +70,14 @@
 				<p class="panel-professor-name"><b>{{approveSubject.professorName}} 교수</b></p>
 				<p class="panel-subject-summary">{{approveSubject.subjectSummary}}</p>
 			</div>
-			<center>
-				<div class="courses-progressbar">
-					<md-progressbar-linear md-mode="determinate" value="{{approveSubject.completedContents/approveSubject.totalContents*100}}" ng-click="goDoingSubjectFunction(approveSubject.professorID, approveSubject.courseID)"></md-progressbar-linear>
-					{{approveSubject.completedContents/approveSubject.totalContents*100|number: 1}}% complete
+			<div layout="row" class="courses-progressbar-section">
+				<div  flex-offset="20" flex="100" class="courses-progressbar-bar">
+					<md-progress-linear md-mode="determinate" value="{{approveSubject.completedContents/approveSubject.totalContents*100}}" ng-click="goDoingSubjectFunction(approveSubject.professorID, approveSubject.courseID)"></md-progress-linear>
 				</div>
-			</center>
+				<div flex="20" class="courses-progressbar-number">
+					{{approveSubject.completedContents/approveSubject.totalContents*100|number: 1}}%
+				</div>
+			</div> <!--row-->
 		</div>
 	</div><!-- /.col-sm-4 -->
 
@@ -91,11 +93,15 @@
 				<p class="panel-professor-name"><b>{{approveSubject.professorName}} 교수</b></p>
 				<p class="panel-subject-summary">{{approveSubject.subjectSummary}}</p>
 			</div>
-			<center>
-				<div class="courses-progressbar">
-					<progressbar  type="grey" value="100"  ng-click="goCompletedSubjectFunction(approveSubject.professorID, approveSubject.courseID)">Completed</progressbar>
+			<div layout="row" class="courses-progressbar-section">
+				<div  flex-offset="20" flex="100" class="courses-progressbar-bar">
+					<md-progress-linear md-mode="determinate" value="100"  ng-click="goCompletedSubjectFunction(approveSubject.professorID, approveSubject.courseID)"></md-progress-linear>
 				</div>
-			</center>
+				<div flex="20" class="courses-progressbar-number">
+					100%
+				</div>
+
+			</div> <!--row-->
 		</div>
 	</div><!-- /.col-sm-4 -->
 </div>
