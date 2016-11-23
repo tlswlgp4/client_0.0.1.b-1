@@ -1,6 +1,6 @@
 <br><br>
 <div ng-show="vm.checkRecentCourse">
-	<div layout="row" layout-wrap layout-sm="column"  >
+	<div layout="row" layout-wrap layout-sm="column">
 		<div flex-offset="5" flex="15" class="top-banner">
 			<img ng-Src="{{vm.recentImage}}" width="100%" />
 		</div>
@@ -16,9 +16,9 @@
 					</div>
 					<div flex="20" style="padding-left: 20px">{{vm.ratioOfCourse|number:1}}%
 					</div>
-					<div flex="10" style="float: right;margin-top: -20px">
-						<md-button  class="md-raised" ng-show="!booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, ResultOfUnitInCourses.UnitId, ResultOfUnitInCourses.UnitNumber, ResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span>START</span></md-button>
-						<md-button  class="md-raised" ng-show="booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, CompletedResultOfUnitInCourses.UnitId, CompletedResultOfUnitInCourses.UnitNumber, CompletedResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span >처음부터</span>
+					<div flex="10" style="float: right;margin-top: -15px">
+						<md-button  class="md-raised banner-button" ng-show="!booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, ResultOfUnitInCourses.UnitId, ResultOfUnitInCourses.UnitNumber, ResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span>START</span></md-button>
+						<md-button  class="md-raised banner-button" ng-show="booleanOfResetStart" ng-click="continueCourse(ResultOfCourses.ProfessorId, ResultOfCourses.id, ResultOfCourses.courseName, CompletedResultOfUnitInCourses.UnitId, CompletedResultOfUnitInCourses.UnitNumber, CompletedResultOfUnitInCourses.DoingContentNumberInUnit, ResultOfCourseOfMembers.id)"><span >처음부터</span>
 					</div>
 				</div> <!--row-->
 			</div> <!--top-banner-content-->
@@ -26,7 +26,6 @@
 	</div>
 </div> <!--ng-show-->
 
-<br><br>
 <div ng-show="!vm.checkRecentCourse">
 	<div  flex-offset="5" flex="85" layout-sm="column" class="before-sign-up-courses" >
 		<div layout="row">
@@ -40,6 +39,7 @@
 	<br><br>
 </div> <!--ng-show-->
 
+<br><br>
 <div flex-offset="5" flex="85" >
 	<!-- 수강가능 -->
 	<div class="col-sm-4" ng-repeat="possibleSubject in vm.possibleSubjects | orderBy:'subjectName'">
@@ -53,7 +53,7 @@
 			</div>
 			<center>
 				<div  style="overflow:hidden;height:45px;margin-bottom:20px">
-					<md-button class="md-raised" ng-click="goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)">START</md-button>
+					<md-button class="md-raised panel-course-button" ng-click="goPossibleSubjectFunction(possibleSubject.professorID, possibleSubject.courseID)">START</md-button>
 				</div>
 			</center>
 		</div>

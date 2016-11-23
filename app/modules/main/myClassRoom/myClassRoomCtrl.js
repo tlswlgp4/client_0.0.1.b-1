@@ -29,7 +29,41 @@
 		vm.version = "1.0.0";
 		vm.listFeatures = homeService.getFeaturesList();
 
-		vm.datailsOfCourse = [
+		vm.noticeOfCourse=[
+			{
+				"title" :"공지사항입니다.",
+				"written": "신지혜",
+				"createdAt":"2016-11-23",
+				"content":"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+			},
+			{
+				"title" :"공지사항입니다.",
+				"written": "신지혜",
+				"createdAt":"2016-11-23",
+				"content":"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+			},
+			{
+				"title" :"공지사항입니다.",
+				"written": "신지혜",
+				"createdAt":"2016-11-23",
+				"content":"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+			},
+			{
+				"title" :"공지사항입니다.",
+				"written": "신지혜",
+				"createdAt":"2016-11-23",
+				"content":"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+			},
+			{
+				"title" :"공지사항입니다.",
+				"written": "신지혜",
+				"createdAt":"2016-11-23",
+				"content":"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+			}
+
+		]
+
+		vm.detailsOfCourse = [
 			{
 				"heading" : "과정소개",
 				"content" :"C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry.C++ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
@@ -55,14 +89,14 @@
 			}
 		];
 
-		// vm.collapseAll = function(data) {
-		// 	for(var i in $scope.accordianData) {
-		// 		if($scope.accordianData[i] != data) {
-		// 			$scope.accordianData[i].expanded = false;
-		// 		}
-		// 	}
-		// 	data.expanded = !data.expanded;
-		// };
+		vm.collapseAll = function(data) {
+			for(var i in $scope.accordianData) {
+				if($scope.accordianData[i] != data) {
+					$scope.accordianData[i].expanded = false;
+				}
+			}
+			data.expanded = !data.expanded;
+		};
 
 
 		vm.studentInfo  ={
@@ -174,9 +208,8 @@
 		];
 		vm.professorName = "문성훈";
 		vm.professorImg ='images/professorImages/문성훈.jpg';
-		vm.subjectName = vm.courseInfo.courseName;
-		vm.recentImage = 'app/assets/images/coursesImage/java.png';
-		// vm.recentImage = 'app/assets/images/coursesImage/'+vm.subjectName+'.png'
+		vm.subjectName = vm.courseInfo[0].courseName;
+		vm.recentImage = 'app/assets/images/coursesImage/'+ vm.subjectName+'.png'
 
 		vm.otherProfessors = [
 			{

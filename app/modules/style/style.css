@@ -41,33 +41,74 @@ ul {
 /*# sourceMappingURL=style.css.map */
 
 /*-----------------------------------------------------myClassRoom.html-----------------------------------------------*/
-
 /*banner*/
 .top-banner{
 	height: auto;
-	background-color: #e9ecef;
+	background-color: #f1f3f5;
+	box-shadow: 1px 1px 2px 1px #dee2e6;
 }
 #top-banner-content{
 	margin-top: 30px;
 	margin-left: 30px;
 	margin-right: 30px;
+	color: #495057;
 }
+
 #top-banner-content p{
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 #top-banner-button{
 	float: right;
-	margin-right: 5px;
+	margin-right: 15px;
+	margin-top: 10px;
 }
 #top-banner-button span{
-	font-size: 16px;
+
 	font-weight: bold;
 }
-
-
+/*notice*/
+.md-toolbar-tools:hover{
+	background-color: #f1f3f5 !important;
+}
+.notice-content{
+	background-color: white !important;
+	padding-left: 50px !important;
+	padding-right: 30px !important;
+	line-height: 25px;
+}
+.md-toolbar-tools {
+	font-size: 15px;
+	letter-spacing: 0.005em;
+	box-sizing: border-box;
+	/*font-weight: 400;*/
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	/*-webkit-box-align: center;*/
+	/*-webkit-align-items: center;*/
+	/*align-items: center;*/
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	width: 100%;
+	height: 64px;
+	max-height: 64px;
+	padding: 0 16px;
+	margin: 0;
+}
+.notice-count{
+	text-align: right!important;
+	margin-right: 10px;
+	font-size: 13px !important;
+	color: #495057 !important;
+	width: 300px !important;
+	margin-top: 15px !important;
+}
 /*progress percentage*/
 .progress-percentage{
-	border: 2px solid #dee2e6;
+	border: 2px solid #ced4da;
+	color: #495057;
 }
 .progress-percentage {
 	text-align: center;
@@ -78,8 +119,12 @@ ul {
 
 
 /*unit*/
+#unit-toolbar span{
+	color: white !important;
+	font-weight: bold;
+}
 .unit-wrap{
-	background-color: #e9ecef;
+	background-color: #f1f3f5;
 }
 .unit-content{
 	padding: 20px;
@@ -122,6 +167,7 @@ ul {
 	font-size: 23px;
 }
 .timeline {
+	color: #495057 !important;
 	position: relative;
 	padding: 21px 0px 10px;
 	margin-top: 4px;
@@ -231,7 +277,10 @@ article{
 }
 
 
-/*datails*/
+/*details*/
+.md-accordion{
+	color: #495057;
+}
 .md-accordion .expandCollapse {
 	width:30px;
 	height:30px;
@@ -258,18 +307,18 @@ article{
 	-webkit-transition: .3s all ease-out;
 	transition: .3s all ease-out;
 }
-.md-accordion .expandCollapse:before {
-	opacity:1;
-	-webkit-transform: rotate(0deg);
-	transform: rotate(0deg);
-	content: "|";
-	margin-top:-3px;
-}
-.md-accordion .expandCollapse:after {
+.md-accordion .expandCollapse ng-md-icon:before {
 	opacity:1;
 	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg);
-	content: "|";
+	/*content: ">";*/
+	margin-top:-3px;
+}
+.md-accordion .expandCollapse ng-md-icon:after {
+	opacity:1;
+	-webkit-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+	/*content: ">";*/
 	margin-left:-3px;
 }
 .md-accordion .active:before {
@@ -279,7 +328,7 @@ article{
 	margin-top:0px;
 }
 .md-accordion .dataContent {
-	background: #F2F2F2;
+	background: #f1f3f5;
 	height:0px;
 	overflow:hidden;
 	-webkit-transition: .3s all ease-out;
@@ -294,30 +343,35 @@ article{
 	cursor:pointer;
 	border-bottom:1px solid #f1f3f5;
 }
-
+#details-content{
+	padding-left: 30px;
+	padding-right: 30px;
+	line-height: 25px;
+}
 
 
 /*info*/
 .info-table{
 	height: auto;
+	color: #495057;
 }
 .info-table ng-md-icon{
 	color: orange;
 }
 .info-table ng-md-icon{
-	margin-right: 20px;
+	margin-right: 30px;
 }
 .info-border{
-	border-top: 1px solid #adb5bd;
-	border-left: 1px solid #adb5bd;
-	border-right: 1px solid #adb5bd;
+	border-top: 1px solid #ced4da;
+	border-left: 1px solid #ced4da;
+	border-right: 1px solid #ced4da;
 }
 .info-border-2nd{
-	border-top: 1px solid #adb5bd;
-	border-right: 1px solid #adb5bd;
+	border-top: 1px solid #ced4da;
+	border-right: 1px solid #ced4da;
 }
 .info-border p , .info-border-2nd p{
-	margin-left: 20px;
+	margin-left: 30px;
 	margin-top: 15px;
 }
 #info-border-last, #info-border-2nd-last{
@@ -325,8 +379,13 @@ article{
 }
 
 /*other professors*/
-.other-profesors-info{
+.other-profesors-info h1{
+	color: #495057;
+}
+.other-profesors-info p{
+	color: #343a40;
 	line-height: 35px;
+	font-size: 16px;
 }
 .other-profesors-info img {
 	border-radius: 50%;
@@ -337,10 +396,12 @@ article{
 }
 
 /*-------------------------------------------------------courseMain---------------------------------------------------*/
+
 .before-sign-up-courses{
 	background-color: #f1f3f5;
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	box-shadow: 1px 1px 2px 1px #dee2e6;
 }
 #before-banner-section-1{
 	padding-left:60px;
@@ -354,8 +415,13 @@ article{
 	line-height: 25px;
 	font-size: 16px;
 }
-.panel{
-	box-shadow: 0 1px 2px #eeeeee;
+.banner-button{
+	background-color: black !important;
+	color: white !important;
+	font-weight: bold;
+}
+.panel-course-button{
+	border: 1px solid #ced4da !important;
 }
 .col-sm-4 .panel:hover{
 	background-color: #ced4da;
@@ -414,7 +480,7 @@ article{
 	margin-top:20px;
 	height:30px;
 	width:80%;
-	margin-bottom:20px;
+	margin-bottom:15px;
 }
 .courses-progressbar-section:hover{
 	width:85%;

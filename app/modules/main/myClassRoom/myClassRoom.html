@@ -21,7 +21,7 @@
 					<img ng-Src="{{vm.recentImage}}" width="100%" >
 			</div>
 
-			<div  flex="70"   class="top-banner">
+			<div  flex="70" class="top-banner">
 				<div id="top-banner-content">
 					<h2>{{vm.courseInfo[0].courseName}}</h2>
 					<p>{{vm.courseInfo[0].courseSummary}}</p>
@@ -37,205 +37,224 @@
 				<!--</div>-->
 			<!--</div>-->
 		</div>
-<!------------------------------------------------------------진행률--------------------------------------------------->
-<br><br>
-<div  flex-offset="10" flex="70" class="progress-percentage">
-	<br><h3>나의 진행률</h3><br>
-	<div layout="row">
-		<div flex-offset="20" flex="50" class="progress-percentage-liner">
-			<md-progress-linear md-mode="determinate" value="{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100}}">
-			</md-progress-linear>
+
+	<!-----------------------------------------------------공지사항------------------------------------------------->
+	<br><br>
+	<div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="notice in vm.noticeOfCourse">
+		<div ng-init="notice.expanded = false" ng-click="notice.expanded = !notice.expanded">
+			<div class="md-toolbar-tools" ng-click="count = count + 1" ng-init="count=0">
+				<span>{{notice.title}}</span>
+				<span flex=""></span>
+				<span ng-class="{expandCollapse:true, active:notice.expanded}" class="notice-count" >
+					<span>작성자 :</span> {{notice.written}}&nbsp;&nbsp;
+					{{notice.createdAt}}&nbsp;&nbsp;
+					조회수 {{count}}</span>
+			</div>
 		</div>
-		<div flex="20" style="margin-left: -20px">
-			{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100|number:1}}% complete
+		<div ng-class="{dataContent:true, activeContent:notice.expanded}" class="notice-content"><br>{{notice.content}}<br><br>
+		</div>
+		<md-divider></md-divider>
+	</div>
+
+	<!--------------------------------------------------------details------------------------------------------------------->
+	<br><br><br><br>
+	<div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="data in vm.detailsOfCourse">
+		<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+			<div class="md-toolbar-tools">
+				<h3>
+					<span>{{data.heading}}</span>
+				</h3>
+				<span flex=""></span>
+				<span ng-class="{expandCollapse:true, active:data.expanded}"><ng-md-icon icon="expand_more"></span>
+			</div>
+		</md-toolbar>
+		<div ng-class="{dataContent:true, activeContent:data.expanded}" id="details-content"><br>{{data.content}}<br><br>
 		</div>
 	</div>
-	<br><br>
-</div>
 
 
+	<!------------------------------------------------------------진행률--------------------------------------------------->
+<!--<br><br>-->
+<!--<div  flex-offset="10" flex="70" class="progress-percentage">-->
+	<!--<br><h3>나의 진행률</h3><br>-->
+	<!--<div layout="row">-->
+		<!--<div flex-offset="20" flex="50" class="progress-percentage-liner">-->
+			<!--<md-progress-linear md-mode="determinate" value="{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100}}">-->
+			<!--</md-progress-linear>-->
+		<!--</div>-->
+		<!--<div flex="20" style="margin-left: -20px">-->
+			<!--{{vm.studentInfo.numberOfCompletedContentsInCourse/vm.studentInfo.numberOfTotalContentsInCourse*100|number:1}}% complete-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<br><br>-->
+<!--</div>-->
 
 <!------------------------------------------------------------unit----------------------------------------------------->
-	<br><br>
-	<div layout="row" ng-repeat="UnitInfo in vm.courseInfo[0].myContentsInCourse" style="margin-bottom: -60px">
-		<div flex-offset="10" flex="70"  class="timeline">
-			<div class="line text-muted" ng-show="!$last"></div>
-			<article class="panel panel-outline">
-				<div class="panel-heading round-tab"  ng-show="!UnitInfo.UnitIsCompeletd">
-					<i class="glyphicon glyphicon-chevron-right"></i>
-				</div>
-				<div class="panel-heading round-tab" ng-class="{'ok-icon': UnitInfo.UnitIsCompeletd == true}" ng-show="UnitInfo.UnitIsCompeletd">
-					<i class="glyphicon glyphicon-ok" style="color: white"></i>
-				</div>
-				<div class="panel-body" style="margin-left: 30px" >
-					<md-toolbar>
-						<div class="md-toolbar-tools">
-							<h3>
-								<span>UNIT {{$index+1}}</span>
-							</h3>
-						</div>
-					</md-toolbar>
-					<md-list style="margin-top: -10px">
-						<md-list-item class="md-3-line unit-wrap">
-							<div class="unit-content" >
-								<h4><b>{{UnitInfo.UnitName}}</b></h4>
-								<p>{{UnitInfo.UnitIsCompeletd}}{{UnitInfo.UnitSummary}}</p>
-								<div class="unit-button">
-									<md-button class="md-raised" ng-click="goExamOrAssignment('exam', UnitInfo.id, UnitInfo.UnitNumber,studentInfo.myContentInfoInCourse[$index].id)" ng-disabled="!studentInfo.myContentInfoInCourse[$index].Completed" ng-show="UnitInfo.RequireExam" ><span>시험보기</span></md-button>&nbsp;
-									<md-button class="md-raised" ng-click="goExamOrAssignment('assignment', UnitInfo.id, UnitInfo.UnitNumber,studentInfo.myContentInfoInCourse[$index].id)" ng-disabled="!studentInfo.myContentInfoInCourse[$index].Completed" ng-show="UnitInfo.RequireAssignment" ><span>과제제출</span></md-button>
-									<md-button class="md-raised" ng-show="!UnitInfo.UnitIsCompeletd" ng-click="unitDoing(UnitInfo.UnitName, UnitInfo.NumberOfQuestionsForExam, UnitInfo.NumberOfQuestionsForAssignment, UnitInfo.UnitNumber, studentInfo.id, UnitInfo.id)"><span>참여</span></md-button>
-									<md-button class="md-raised" ng-show="UnitInfo.UnitIsCompeletd" ng-click="compltedUnitDoing(UnitInfo.UnitName, UnitInfo.NumberOfQuestionsForExam, UnitInfo.NumberOfQuestionsForAssignment, UnitInfo.UnitNumber, studentInfo.id, UnitInfo.id)"> 완료 </md-button>
-								</div>
-							</div>
-						</md-list-item>
-					</md-list>
-				</div>
-			</article>
-		</div>
-	</div>
+	<!--<br><br>-->
+	<!--<div layout="row" ng-repeat="UnitInfo in vm.courseInfo[0].myContentsInCourse" style="margin-bottom: -60px">-->
+		<!--<div flex-offset="10" flex="70"  class="timeline">-->
+			<!--<div class="line text-muted" ng-show="!$last"></div>-->
+			<!--<article class="panel panel-outline">-->
+				<!--<div class="panel-heading round-tab"  ng-show="!UnitInfo.UnitIsCompeletd">-->
+					<!--<i class="glyphicon glyphicon-chevron-right"></i>-->
+				<!--</div>-->
+				<!--<div class="panel-heading round-tab" ng-class="{'ok-icon': UnitInfo.UnitIsCompeletd == true}" ng-show="UnitInfo.UnitIsCompeletd">-->
+					<!--<i class="glyphicon glyphicon-ok" style="color: white"></i>-->
+				<!--</div>-->
+				<!--<div class="panel-body" style="margin-left: 30px" >-->
+					<!--<md-toolbar>-->
+						<!--<div class="md-toolbar-tools"id="unit-toolbar">-->
+							<!--<h3>-->
+								<!--<span>UNIT {{$index+1}}</span>-->
+							<!--</h3>-->
+						<!--</div>-->
+					<!--</md-toolbar>-->
+					<!--<md-list style="margin-top: -10px">-->
+						<!--<md-list-item class="md-3-line unit-wrap">-->
+							<!--<div class="unit-content" >-->
+								<!--<h4><b>{{UnitInfo.UnitName}}</b></h4>-->
+								<!--<p>{{UnitInfo.UnitIsCompeletd}}{{UnitInfo.UnitSummary}}</p>-->
+								<!--<div class="unit-button">-->
+									<!--<md-button class="md-raised" ng-click="goExamOrAssignment('exam', UnitInfo.id, UnitInfo.UnitNumber,studentInfo.myContentInfoInCourse[$index].id)" ng-disabled="!studentInfo.myContentInfoInCourse[$index].Completed" ng-show="UnitInfo.RequireExam" ><span>시험보기</span></md-button>&nbsp;-->
+									<!--<md-button class="md-raised" ng-click="goExamOrAssignment('assignment', UnitInfo.id, UnitInfo.UnitNumber,studentInfo.myContentInfoInCourse[$index].id)" ng-disabled="!studentInfo.myContentInfoInCourse[$index].Completed" ng-show="UnitInfo.RequireAssignment" ><span>과제제출</span></md-button>-->
+									<!--<md-button class="md-raised" ng-show="!UnitInfo.UnitIsCompeletd" ng-click="unitDoing(UnitInfo.UnitName, UnitInfo.NumberOfQuestionsForExam, UnitInfo.NumberOfQuestionsForAssignment, UnitInfo.UnitNumber, studentInfo.id, UnitInfo.id)"><span>참여</span></md-button>-->
+									<!--<md-button class="md-raised" ng-show="UnitInfo.UnitIsCompeletd" ng-click="compltedUnitDoing(UnitInfo.UnitName, UnitInfo.NumberOfQuestionsForExam, UnitInfo.NumberOfQuestionsForAssignment, UnitInfo.UnitNumber, studentInfo.id, UnitInfo.id)"> 완료 </md-button>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</md-list-item>-->
+					<!--</md-list>-->
+				<!--</div>-->
+			<!--</article>-->
+		<!--</div>-->
+	<!--</div>-->
 
 
-	<!--------------------------------------------------------datail------------------------------------------------------->
-<br><br><br><br>
-<div  flex-offset="10" flex="70" class="md-accordion" ng-repeat="data in vm.datailsOfCourse">
-	<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
-		<div class="md-toolbar-tools">
-			<h2>
-				<span>{{data.heading}}</span>
-			</h2>
-			<span flex=""></span>
-			<span ng-class="{expandCollapse:true, active:data.expanded}"></span>
-		</div>
-	</md-toolbar>
-	<div ng-class="{dataContent:true, activeContent:data.expanded}" style="padding-left: 30px; padding-right: 30px"><br>{{data.content}}<br><br>
-	</div>
-</div>
 
 <!---------------------------------------------------------info---------------------------------------------------->
 
-<br><br>
-<div ng-repeat="item in vm.courseInfo">
-	<div layout="row" layout-wrap layout-sm="column" class="info-table"  >
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="info" ></ng-md-icon><b>모집기간</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd" >
-				<p> {{item.recruitmentPeriod }}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="av_timer"></ng-md-icon><b>수강기간</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{item.durationOfTheCourse}}</p>
-		</div>
-	</div>
+<!--<br><br>-->
+<!--<div ng-repeat="item in vm.courseInfo">-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table"  >-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="info" ></ng-md-icon><b>모집기간</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd" >-->
+				<!--<p> {{item.recruitmentPeriod }}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="av_timer"></ng-md-icon><b>수강기간</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{item.durationOfTheCourse}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
 
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="face"></ng-md-icon><b>강사</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{vm.professorName}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="border_color"></ng-md-icon><b>강의시간</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{item.lectureTime}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="brightness_5"></ng-md-icon><b>고용보험</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.unemploymentInsurance}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25"class="info-border">
-			<p><ng-md-icon icon="content_paste"></ng-md-icon><b>지원형태</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.formOfSupport}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25"class="info-border">
-			<p><ng-md-icon icon="brightness_auto"></ng-md-icon><b>환급금</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.refund}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="assistant_photo"></ng-md-icon><b>위탁교육서 제출기한</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.deadlineForConsignmentEducationDoc}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="data_usage"></ng-md-icon><b>학습정원</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.numberOfStudent}}명</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="format_list_numbered"></ng-md-icon><b>전체 학습 유닛수</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.numberOfUnit}}개</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border">
-			<p><ng-md-icon icon="format_quote"></ng-md-icon><b>교재명</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd">
-			<p>{{ item.bookName}}</p>
-		</div>
-	</div>
-	<div layout="row" layout-wrap layout-sm="column" class="info-table">
-		<div flex-offset="20" flex="25" class="info-border" id="info-border-last">
-			<p><ng-md-icon icon="receipt"></ng-md-icon><b>수강신청 금액</b></p>
-		</div>
-		<div flex="30" class="info-border-2nd" id="info-border-2nd-last">
-			<p>{{ item.price}}</p>
-		</div>
-	</div>
-</div>
-<br><br>
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="face"></ng-md-icon><b>강사</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{vm.professorName}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="border_color"></ng-md-icon><b>강의시간</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{item.lectureTime}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="brightness_5"></ng-md-icon><b>고용보험</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.unemploymentInsurance}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25"class="info-border">-->
+			<!--<p><ng-md-icon icon="content_paste"></ng-md-icon><b>지원형태</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.formOfSupport}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25"class="info-border">-->
+			<!--<p><ng-md-icon icon="brightness_auto"></ng-md-icon><b>환급금</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.refund}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="assistant_photo"></ng-md-icon><b>위탁교육서 제출기한</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.deadlineForConsignmentEducationDoc}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="data_usage"></ng-md-icon><b>학습정원</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.numberOfStudent}}명</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="format_list_numbered"></ng-md-icon><b>전체 학습 유닛수</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.numberOfUnit}}개</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border">-->
+			<!--<p><ng-md-icon icon="format_quote"></ng-md-icon><b>교재명</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd">-->
+			<!--<p>{{ item.bookName}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div layout="row" layout-wrap layout-sm="column" class="info-table">-->
+		<!--<div flex-offset="20" flex="25" class="info-border" id="info-border-last">-->
+			<!--<p><ng-md-icon icon="receipt"></ng-md-icon><b>수강신청 금액</b></p>-->
+		<!--</div>-->
+		<!--<div flex="30" class="info-border-2nd" id="info-border-2nd-last">-->
+			<!--<p>{{ item.price}}</p>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+<!--<br><br>-->
 
 
 <!--------------------------------------------other professor----------------------------------->
-<br><br><br>
-<div flex-offset="10" flex="70" class="other-profesors-info" >
-	<h1>Other Professor</h1><br>
-	<div  ng-repeat="item in vm.otherProfessors">
-		<md-divider></md-divider>
-		<div layout="row" layout-wrap layout-sm="column">
-			<div flex-offset="10" flex="10">
-				<br>
-				<a href="" ng-click="otherProfessorInfo(professor.courseId, professor.professorId)">
-					<img ng-src="app/assets/images/professorImages/{{item.name}}.jpg">
-				</a>
-			</div>
-			<div flex="70" style="padding-left: 100px">
-				<br>
-				<p>Taught by : {{item.name}}<br>수강인원 : {{item.numberOfStudent}}명 <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				<br>
-			</div>
+<!--<br><br><br>-->
+<!--<div flex-offset="10" flex="70" class="other-profesors-info" >-->
+	<!--<h1>Other Professor</h1><br>-->
+	<!--<div  ng-repeat="item in vm.otherProfessors">-->
+		<!--<md-divider></md-divider>-->
+		<!--<div layout="row" layout-wrap layout-sm="column">-->
+			<!--<div flex-offset="10" flex="10">-->
+				<!--<br>-->
+				<!--<a href="" ng-click="otherProfessorInfo(professor.courseId, professor.professorId)">-->
+					<!--<img ng-src="app/assets/images/professorImages/{{item.name}}.jpg">-->
+				<!--</a>-->
+			<!--</div>-->
+			<!--<div flex="70" style="padding-left: 100px">-->
+				<!--<br>-->
+				<!--<p>Taught by : {{item.name}}<br>수강인원 : {{item.numberOfStudent}}명 <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+				<!--<br>-->
+			<!--</div>-->
 
-		</div>
-		<md-divider></md-divider><br>
-	</div>
-</div>
+		<!--</div>-->
+		<!--<md-divider></md-divider><br>-->
+	<!--</div>-->
+<!--</div>-->
